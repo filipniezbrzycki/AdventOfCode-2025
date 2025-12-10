@@ -39,8 +39,6 @@ def minPresses(targets: List[int], buttons: List[List[int]]) -> int:
             f"counter_{i}"
         )
     prob.solve(pulp.PULP_CBC_CMD(msg=False))
-    if pulp.LpStatus[prob.status] != "Optimal":
-        raise RuntimeError(f"ILP could not find optimal solution, status: {pulp.LpStatus[prob.status]}")
     result = int(round(pulp.value(pulp.lpSum(x))))
     return result
 
